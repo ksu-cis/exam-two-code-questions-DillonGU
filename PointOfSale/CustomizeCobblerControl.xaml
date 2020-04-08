@@ -4,9 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ExamTwoQuestions.PointOfSale"
+             xmlns:data="clr-namespace:ExamTwoCodeQuestions.Data;assembly=ExamTwoCodeQuestions.Data"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             
+             
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ObjectDataProvider MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}"
+                        x:Key="dataFruit">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="data:FruitFilling" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+
     <Grid>
-        <TextBlock>Customize Cobbler</TextBlock>
+        <TextBlock FontSize="25">Customize Cobbler</TextBlock>
+        <StackPanel Width="300">
+            <TextBlock  FontSize="20" Height="60">Choose the Fruitfilling of cobbler:</TextBlock>
+            <ListBox Height="100" Name="Options" SelectedIndex="0" Margin="20"
+               ItemsSource="{Binding Source={StaticResource dataFruit}}"
+               SelectedItem="{Binding Path=Fruit}" />
+            
+        </StackPanel>
+
+        <StackPanel Height="150" Orientation="Horizontal">
+            <ToggleButton Width="100" Height="100" IsChecked="{Binding Path=WithIceCream}">WithIceCream</ToggleButton>
+        </StackPanel>
     </Grid>
 </UserControl>

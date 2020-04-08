@@ -22,5 +22,8 @@ namespace ExamTwoQuestions.PointOfSale
         {
             InitializeComponent();
         }
+
+        
+        
     }
 }
